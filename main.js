@@ -2,8 +2,8 @@ song1 = "";
 song2 = "";
 
 function preload(){
-    song1 = loadSound("music.mp3");
-    song2 = load
+    song1 = loadSound("astronaut in the ocean.mp3");
+    song2 = loadSound("gangstas paradise.mp3")
 }
 
 function setup(){
@@ -16,4 +16,7 @@ function setup(){
 
 function draw(){
     Image(video, 0, 0, 600, 500);
+}
+function play(){
+    song.play();
 }
