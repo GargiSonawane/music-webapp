@@ -4,6 +4,8 @@ leftWristX = 0;
 leftWristY = 0;
 rightWristX = 0;
 rightWristY = 0; 
+song1_status = "";
+scoreLeftWrist = 0;
 
 function preload(){
     song1 = loadSound("astronaut in the ocean.mp3");
@@ -28,7 +30,19 @@ function modelLoaded(){
 
 function draw(){
     Image(video, 0, 0, 600, 500);
+    song1_status = song1.isPlaying();
+    fill('#f54260');
+    stroke('#f542e9');
+    if(scoreLeftWrist > 0.2){
+        circle(leftWristX, leftWristY, 20);
+        song2.stop();
+        if(song1_status = false){
+            song1.play();
+            document.getElementById.("SongName").innerHTML = Song1;
+        }
+    }
 }
+
 function play(){
     song.play();
 }
@@ -38,11 +52,13 @@ function gotPoses(results){
         console.log(results);
         
         leftWristX = results[0].pose.leftWrist.x;
-        leftWristY = results[0].pose.leftWrist.y;
-        console.log("leftWristX =" + leftWristX + " leftWristY =" + leftWristY);
 
         rightWristX = results[0].pose.rightWrist.x;
         rightWristY = results[0].pose.rightWrist.y;
         console.log("RightWristX =" + rightWristX + " rightWristY =" + rightWristY);
+
+        scoreLeftWrist = results[0].pose.keypoints[9].score;
+        scoreLeftWrist = results[0].pose.keypoints[10].score
+        console.log("ScoreLeftWrist = " + scoreLeftWrist + "ScoreRightWrist = " + scoreRightWrist);
     }
 }
